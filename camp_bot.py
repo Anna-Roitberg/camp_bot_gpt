@@ -10,6 +10,15 @@ ENROLL_PREFX = "Ask about full name, phone number, email, and kid's age (validat
 
 
 def send_request(context, request):
+    """
+    Send request to LLM
+    Args:
+        context: context list containing the history of the chat
+        request: the current user's question
+
+    Returns: the LLM's response
+
+    """
     messages = [{"role": "system", "content": "You are a helpful and accurate assistant."}]
 
     for n, msg in enumerate(context):
@@ -29,6 +38,16 @@ def send_request(context, request):
 
 
 def main_loop(context):
+    """
+    A loop for engaging in a conversation with a user. There are two scenarios: 1) addressing questions about the camp,
+     and 2) facilitating the sign-up process for a child.
+    Args:
+        context: context list containing the history of the chat
+
+    Returns:
+
+    """
+
     u_prompt = "How can I help you?"
     enroll_stage = False
 
@@ -68,9 +87,9 @@ if __name__ == '__main__':
     summary_request = "Please print parent's full name, phone number, email, and kid's age in json form. " \
                       "Print only json."
     replay = send_request(context=cur_context, request=summary_request)
-    #print(replay)
+
     try:
         data = json.loads(replay)
         print(data)
     except Exception as e:
-        print("ERROR: Cant parce response from GPT", e)
+        print("ERROR: Cant parse response from GPT", e)
