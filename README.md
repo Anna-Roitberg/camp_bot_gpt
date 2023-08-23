@@ -6,7 +6,7 @@
 
 1) Upon receiving a user's query, I consult the LLM to determine if the user intends to enroll a child in the camp.
 
-    a) If the response is "YES," I transition to collecting essential details (parent's full name, phone number, email, and         child's age).
+    a) If the response is "YES," I transition to collecting essential details (parent's full name, phone number, email, and         child's age). During the data collection I validate phone numbers and email addresses.     
 
     b) If the response is "NO," I forward both the user's question and the camp description to the LLM, requesting an answer         based on the provided description.
 
